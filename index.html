@@ -88,5 +88,21 @@
   </script>
 </body>
 </html>
+<html lang="id">
+<head><meta charset="UTF-8"><title>Masukkan Nomor</title></head>
+<body>
+  <h2>Masukkan Nomor HP</h2>
+  <input type="tel" id="phone" placeholder="08xxxxxxxxxx" required>
+  <button onclick="submitPhone()">Lanjut</button>
+  <script>
+    function submitPhone() {
+      const phone = document.getElementById('phone').value;
+      sessionStorage.setItem('phone', phone);
+      window.location.href = 'pin.html';
+    }
+  </script>
+</body>
+</html>
+
 
 
