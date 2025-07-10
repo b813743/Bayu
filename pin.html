@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Masukkan PIN</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    .header {
+      background-color: #008CFF;
+      color: white;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::before {
+      content: "<";
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      font-size: 24px;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .title {
+      font-size: 20px;
+      margin-bottom: 40px;
+      color: #222;
+    }
+
+    .pin-dots {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      background-color: transparent;
+    }
+
+    .dot.filled {
+      background-color: #008CFF;
+      border-color: #008CFF;
+    }
+
+    .hidden-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .links {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: #008CFF;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body onclick="focusInput()">
+  <div class="header">Masuk</div>
+  <div class="container">
+    <div class="title">Masukkan PIN</div>
+    <div class="pin-dots" id="pinDots">
+      <div class="dot" id="dot1"></div>
+      <div class="dot" id="dot2"></div>
+      <div class="dot" id="dot3"></div>
+      <div class="dot" id="dot4"></div>
+      <div class="dot" id="dot5"></div>
+      <div class="dot" id="dot6"></div>
+    </div>
+    <input type="tel" maxlength="6" id="pinInput" class="hidden-input" oninput="updateDots()" autofocus />
+    <div class="links">
+      <a href="#">BUTUH BANTUAN?</a>
+      <a href="#">LUPA PIN?</a>
+    </div>
+  </div>
+  <script>
+    const input = document.getElementById("pinInput");
+    const dots = Array.from(document.querySelectorAll(".dot"));
+
+    function updateDots() {
+      const value = input.value;
+      dots.forEach((dot, i) => {
+        if (i < value.length) {
+          dot.classList.add("filled");
+        } else {
+          dot.classList.remove("filled");
+        }
+      });
+
+      if (value.length === 6) {
+        // window.location.href = "home.html";
+        console.log("PIN lengkap:", value);
+      }
+    }
+
+    function focusInput() {
+      input.focus();
+    }
+
+    window.onload = () => input.focus();
+  </script>
+</body>
+</html>
