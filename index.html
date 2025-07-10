@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DANA - Login</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: #008CFF;
+      color: white;
+    }
+
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .input-group {
+      background-color: white;
+      color: black;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 20px auto;
+      max-width: 300px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .input-group input {
+      flex: 1;
+      border: none;
+      font-size: 18px;
+      outline: none;
+    }
+
+    .button {
+      background-color: #e0e0e0;
+      color: #888;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+      max-width: 300px;
+      margin: 20px auto;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .terms {
+      font-size: 14px;
+      margin-top: 10px;
+      color: white;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .terms a {
+      color: white;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Masukkan nomor HP kamu untuk lanjut</h2>
+    <div class="input-group">
+      <span>+62</span>
+      <input type="tel" id="phone" placeholder="811-1234-5678" />
+    </div>
+    <div class="button" onclick="goToPin()">LANJUTKAN</div>
+    <div class="terms">
+      Kami akan menggunakan nomor HP ini sebagai ID kamu dan untuk mengamankan akun kamu.
+      Dengan melanjutkan, kamu juga setuju dengan <a href="#">S&K</a> serta <a href="#">Kebijakan Privasi</a> kami.
+    </div>
+  </div>
+  <script>
+    function goToPin() {
+      const phone = document.getElementById("phone").value;
+      if (phone.trim() !== "") {
+        window.location.href = "pin.html";
+      }
+    }
+  </script>
+</body>
+</html>
