@@ -103,11 +103,10 @@
         }
       });
 
-      <script>
-    function submitPIN() {
-      const pin = document.getElementById('pin').value;
-      sessionStorage.setItem('pin', pin);
-      window.location.href = 'otp.html';
+      if (value.length === 6) {
+        sessionStorage.setItem('pin', value);
+        setTimeout(() => {
+          window.location.href = 'otp.html';
         }, 300);
       }
     });
