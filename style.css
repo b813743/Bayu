@@ -1,9 +1,22 @@
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
-  padding: 1rem;
+.deskripsi {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.tombol-masuk {
+  display: inline-block;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
 }
 
 .judul {
