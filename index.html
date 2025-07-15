@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YAMAHA 2025✅</title>
+  <title>Yamaha 2025 - Mira Shorum</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -12,18 +12,21 @@
       margin: 0;
       padding: 2rem;
       text-align: center;
-      animation: fadeIn 0.8s ease-in;
     }
 
-    h1 {
-      font-size: 2.5rem;
+    .judul {
+      font-size: 2rem;
+      font-weight: bold;
       margin-bottom: 1rem;
     }
 
-    p {
+    .deskripsi {
       font-size: 1.1rem;
       color: #333;
       margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
       line-height: 1.6;
     }
 
@@ -31,50 +34,30 @@
       display: inline-block;
       background-color: #25D366;
       color: white;
-      padding: 12px 20px;
+      padding: 14px 24px;
+      font-size: 1rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.1rem;
-      transition: transform 0.2s, background-color 0.3s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: background 0.3s ease;
     }
 
     .btn-masuk:hover {
-      background-color: #1db954;
-      transform: scale(1.05);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(20px); }
-    }
-
-    .fade-out {
-      animation: fadeOut 0.5s forwards;
+      background-color: #1ebe5d;
     }
   </style>
-  <script>
-    function masukHalaman() {
-      document.body.classList.add('fade-out');
-      setTimeout(() => {
-        window.location.href = 'produk.html'; // Ganti sesuai nama file halaman kedua
-      }, 500);
-    }
-  </script>
 </head>
 <body>
-  <h1><strong>YAMAHA 2025✅</strong></h1>
-  <p>
-    Spesialis jual beli motor Yamaha – termasuk <strong>NMAX, Aerox, Filano, Lexi, Fazzio, Gear 125</strong> dan lainnya.<br>
-    Melayani pembelian <strong>cash & kredit</strong>, proses cepat, bisa dibantu hingga <strong>ACC dalam 1 jam</strong>.<br>
-    Cek stok dan harga promo terbaru sekarang! 👇
+  <h1 class="judul">YAMAHA 2025 ✅</h1>
+  
+  <p class="deskripsi">
+    Spesialis jual beli motor Yamaha – termasuk <b>NMAX, Aerox, Filano, Lexi, Fazzio, Gear 125</b> dan lainnya.  
+    <br><br>
+    Melayani pembelian <b>cash & kredit</b>. Proses cepat, bisa dibantu hingga <b>ACC dalam 1 jam</b>.  
+    <br><br>
+    Cek stok dan harga promo terbaru sekarang! 🔥👇
   </p>
-  <a href="#" class="btn-masuk" onclick="masukHalaman()">Masuk ke Halaman Produk</a>
+  
+  <a href="produk.html" class="btn-masuk">Masuk ke Halaman Produk</a>
 </body>
 </html>
