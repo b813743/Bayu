@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       min-height: 100vh;
-      background-image: url('motor-bg.jpg'); /* ganti dengan nama file kamu */
+      background-image: url('motor-bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -18,27 +18,24 @@
       color: white;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* ubah agar konten tidak di tengah bawah */
+      justify-content: center;
       align-items: center;
-      padding-top: 40px; /* konten agak naik */
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       margin-bottom: 1rem;
     }
 
     p {
       font-size: 1.1rem;
       color: #ddd;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       line-height: 1.6;
       text-align: center;
-      max-width: 90%;
     }
 
-    .btn-masuk,
-    .btn-kontak {
+    .btn-masuk, .btn-kontak {
       display: inline-block;
       background-color: #25D366;
       color: white;
@@ -47,23 +44,22 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 1.1rem;
+      margin: 5px;
       transition: transform 0.2s, background-color 0.3s;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      margin: 10px 8px;
     }
 
-    .btn-masuk:hover,
-    .btn-kontak:hover {
+    .btn-masuk:hover, .btn-kontak:hover {
       background-color: #1db954;
       transform: scale(1.05);
     }
 
     .sosmed {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     .sosmed a {
-      margin: 0 10px 10px 10px;
+      margin: 8px;
       display: inline-block;
       padding: 10px 15px;
       border-radius: 6px;
@@ -82,6 +78,21 @@
     .instagram { background-color: #E1306C; }
     .tiktok { background-color: #010101; }
     .whatsapp { background-color: #25D366; }
+    .kaos-btn { background-color: #FF6347; }
+
+    #kataKaos {
+      display: none;
+      margin-top: 1.5rem;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 15px 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      white-space: pre-line;
+      max-width: 90%;
+      color: #fff;
+      animation: fadeIn 0.5s ease;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -101,8 +112,13 @@
     function masukHalaman() {
       document.body.classList.add('fade-out');
       setTimeout(() => {
-        window.location.href = 'produk.html'; // Ganti ke file halaman kedua
+        window.location.href = 'produk.html';
       }, 500);
+    }
+
+    function tampilkanKataKaos() {
+      const teks = document.getElementById('kataKaos');
+      teks.style.display = teks.style.display === 'none' ? 'block' : 'none';
     }
   </script>
 </head>
@@ -115,16 +131,26 @@
   </p>
 
   <a href="#" class="btn-masuk" onclick="masukHalaman()">Cek Produk</a>
-  <a 
-    href="https://wa.me/6283862596697?text=Halo,%20saya%20ingin%20bertanya%20tentang%20motor%20yang%20tersedia" 
-    class="btn-kontak" 
-    target="_blank">Hubungi Kami</a>
+  <a href="https://wa.me/6283862596697?text=Halo,%20saya%20ingin%20bertanya%20tentang%20motor%20yang%20tersedia" class="btn-kontak" target="_blank">Hubungi Kami</a>
 
   <div class="sosmed">
     <a href="https://www.facebook.com/raa.yamaha?mibextid=ZbWKwL" class="facebook" target="_blank">Facebook</a>
     <a href="https://www.instagram.com/mira_sadela08?igsh=MTdvY3kwenNhM3hqZw==" class="instagram" target="_blank">Instagram</a>
+
+    <!-- Tombol Kaos -->
+    <a href="#" class="kaos-btn" onclick="tampilkanKataKaos()">Lihat Kata-Kata Kaos</a>
+
     <a href="http://tiktkunmu" class="tiktok" target="_blank">TikTok</a>
     <a href="https://wa.me/6283862596697" class="whatsapp" target="_blank">WhatsApp</a>
+  </div>
+
+  <!-- Teks Kaos -->
+  <div id="kataKaos">
+    OTAK MINTA LIBUR<br>
+    TUBUH MINTA KASUR<br>
+    CUACA NYURUH TIDUR<br>
+    SEDANGKAN ISI DOMPET<br>
+    MEMAKSA UNTUK TERUS TEMPUR!
   </div>
 </body>
 </html>
