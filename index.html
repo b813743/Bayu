@@ -80,17 +80,12 @@
     .whatsapp { background-color: #25D366; }
     .kaos-btn { background-color: #FF6347; }
 
-    #kataKaos {
+    #kaosGambar {
       display: none;
       margin-top: 1.5rem;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 15px 20px;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 1.1rem;
-      white-space: pre-line;
       max-width: 90%;
-      color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
       animation: fadeIn 0.5s ease;
     }
 
@@ -116,9 +111,9 @@
       }, 500);
     }
 
-    function tampilkanKataKaos() {
-      const teks = document.getElementById('kataKaos');
-      teks.style.display = teks.style.display === 'none' ? 'block' : 'none';
+    function tampilkanGambarKaos() {
+      const img = document.getElementById('kaosGambar');
+      img.style.display = img.style.display === 'none' ? 'block' : 'none';
     }
   </script>
 </head>
@@ -137,20 +132,14 @@
     <a href="https://www.facebook.com/raa.yamaha?mibextid=ZbWKwL" class="facebook" target="_blank">Facebook</a>
     <a href="https://www.instagram.com/mira_sadela08?igsh=MTdvY3kwenNhM3hqZw==" class="instagram" target="_blank">Instagram</a>
 
-    <!-- Tombol Kaos -->
-    <a href="#" class="kaos-btn" onclick="tampilkanKataKaos()">anjay</a>
+    <!-- Tombol Tampilkan Gambar Kaos -->
+    <a href="#" class="kaos-btn" onclick="tampilkanGambarKaos()">Lihat Kata-Kata Kaos</a>
 
     <a href="http://tiktkunmu" class="tiktok" target="_blank">TikTok</a>
     <a href="https://wa.me/6283862596697" class="whatsapp" target="_blank">WhatsApp</a>
   </div>
 
-  <!-- Teks Kaos -->
-  <div id="kataKaos">
-    OTAK MINTA LIBUR<br>
-    TUBUH MINTA KASUR<br>
-    CUACA NYURUH TIDUR<br>
-    SEDANGKAN ISI DOMPET<br>
-    MEMAKSA UNTUK TERUS TEMPUR!
-  </div>
+  <!-- Gambar Kaos -->
+  <img id="kaosGambar" src="kaos.jpg" alt="Kaos Kata-kata" />
 </body>
 </html>
