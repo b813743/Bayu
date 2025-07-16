@@ -3,29 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kata-Kata Kaos</title>
+  <title>Video Kaos</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: #111;
+      background-color: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      flex-direction: column;
     }
 
-    img {
+    video {
       max-width: 90%;
-      max-height: 90vh;
-      border-radius: 12px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.6);
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
     }
 
     a.back {
-      position: absolute;
-      top: 20px;
-      left: 20px;
+      margin-top: 20px;
       background-color: #25D366;
       color: white;
       padding: 10px 15px;
@@ -40,7 +39,11 @@
   </style>
 </head>
 <body>
+  <video controls autoplay>
+    <source src="kaos.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video ini.
+  </video>
+
   <a href="index.html" class="back">⬅ Kembali</a>
-  <img src="kaos.jpg" alt="Kaos Kata-Kata" />
 </body>
 </html>
